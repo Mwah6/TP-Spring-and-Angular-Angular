@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="col-md-6 col-sm-6 col-xs-12"> <!--Bootstrap utilise 12 colonnes => on lui dit d'en prendre la moitié-->
+    <!-- col-md-6 => pour un écran medium-->
+    <!-- col-sm-6 => pour un écran small => tablette-->
+    <!-- col-xs-12 => pour un écran small => smartphone-->
+<div class="card card-default">
+    <div class="card-header">Edition du produit</div>
+    <div class="card-body" *ngIf="currentProduct">  <!-- ne l'affiche que lorsqu'il est prêt-->
+
+        <form #f="ngForm" (ngSubmit)="onUpdateProduct(f.value)">
+            <div class="form-group">
+                <label class="control-label">Désignation</label>
+                <input class="form-control" type="text" name="designation" ngModel [(ngModel)]="currentProduct.designation">
+            </div>
+       
+        <div class="form-group">
+            <label class="control-label">Quantité</label>
+            <input class="form-control" type="number" name="quantite" ngModel [(ngModel)]="currentProduct.quantite">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Prix</label>
+            <input class="form-control" type="text" name="price" ngModel [(ngModel)]="currentProduct.price">
+        </div>
+        <button class="btn btn-success" type="submit">Update</button>
+    </form>
+    </div>

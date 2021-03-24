@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">Liste des produits</div>
+        <div class="card-body">
+            <button class="btn btn-primary" (click)="onGetProducts()">Produits</button>
+        </div>
+        <div class="card-body">
+            <!--2 manières de faire des formulaires sous Angular-->
+            <form #f="ngForm" (ngSubmit)="onChercher(f.value)"><!--#f -> identifiant du formulaire-. Toute les données du formulaire f vont être transmises à la méthode "onChercher" -->
+             <!--Il faut déclarer ngForm dans le module-->  
+                <div class="form-group">
+                    <label>Keyword : </label>
+                    <input type="text" name="keyword" ngModel><!--ngModel va ajouter automatiquement dans la classe des composants un attribut qui s'appelle "keyword"-->
+                    <button type="submit" class="btn btn-primary">
+                      <span class=""></span>
+                      chercher</button>
+                </div>
+            </form>
+            <table *ngIf="produits" class="table table-striped"><!--dit de n'afficher que si il y a des produits-->
+            <tr>
+                <th>ID</th><th>DES</th><th>PRIX</th><th>QTE</th>
+            </tr>
+            <tr *ngFor= "let p of produits._embedded.produits"><!--parcours des produits _embedded.produits-->
+            <td>{{p.id}}</td>
+            <td>{{p.designation}}</td>
+            <td>{{p.price|number:'0.2'}}</td><!--|number:'0.2'-> Pipeline-->
+            <td>{{p.quantite}}</td>
+            <td><a class = "btn btn-danger" (click)="onDeleteProduct(p)">Delete</a></td>
+            <td><a class = "btn btn-success" (click)="onEditProduct(p)">Edit</a></td>
+        </tr>
+        </table>
+
+        </div>
+        <ul *ngIf="pages" class="nav nav-pills">
+            <li *ngFor = "let p of pages; let i = index" class=" nav-item clickable"> <!--[ngClass] applique une classe CSS si une condition est vérifiée -->
+              <!--let i = index=>récupère l'index de la "pages"-->
+                <a class = nav-link [ngClass]="i==currentPage?' active':''" (click)="onPageProduct(i)">{{i}}</a>
+            </li>
+        </ul>
+    </div>
+
+</div>>
+<ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </li>
+  </ul>

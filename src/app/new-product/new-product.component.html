@@ -1,0 +1,45 @@
+
+<div class="container">
+    <div class="col-md-6 col-sm-6 col-xs-12"> <!--Bootstrap utilise 12 colonnes => on lui dit d'en prendre la moitié-->
+    <!-- col-md-6 => pour un écran medium-->
+    <!-- col-sm-6 => pour un écran small => tablette-->
+    <!-- col-xs-12 => pour un écran small => smartphone-->
+<div class="card card-default">
+    <div class="card-header">Nouveau produit</div>
+    <div class="card-body" *ngIf="mode==1">
+
+        <form #f="ngForm" (ngSubmit)="onSaveProduct(f.value)">
+            <div class="form-group">
+                <label class="control-label">Désignation</label>
+                <input class="form-control" type="text" name="designation" ngModel>
+            </div>
+       
+        <div class="form-group">
+            <label class="control-label">Quantité</label>
+            <input class="form-control" type="number" name="quantite" ngModel>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Prix</label>
+            <input class="form-control" type="text" name="price" ngModel>
+        </div>
+        <button class="btn btn-success" type="submit">Save</button>
+    </form>
+    </div>
+    <div class ="card-body" *ngIf="mode==2">
+        <button class="btn btn-success"(click)="onNewProduct()">Nouveau Produit</button>
+       <div class= "formGroup">
+           <label>ID : </label><label>{{currentProduct.id}}</label>
+       </div>
+       <div class= "formGroup">
+           <label>Désignation : </label><label>{{currentProduct.designation}}</label>
+        </div>
+        <div class= "formGroup">
+           <label>Prix : </label><label>{{currentProduct.price}}</label>
+        </div>
+        <div class= "formGroup">
+           <label>Quantité : </label><label>{{currentProduct.quantite}}</label>
+       </div> 
+    </div>
+</div>
+</div>
+</div>
